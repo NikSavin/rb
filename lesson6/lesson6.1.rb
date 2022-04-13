@@ -24,7 +24,7 @@ class News < Page
     #super
 #Если количество параметров базового(Page) и произвольного(News) класса не совпадают, мы можем указать список параметров методу super явно!
 #Чтобы не сломать нашу программу мы должны добавить явно наш параметр date: методу super
-    super (title: title, body: body, headers: headers)
+    super(title: title, body: body, headers: headers)
   end
 end
 

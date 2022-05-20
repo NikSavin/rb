@@ -1,0 +1,28 @@
+require 'open-uri'
+
+require 'rubygems'
+require 'bundler/setup'
+
+Bundler.require(:default) 
+
+
+task default: :load
+
+namespace :docs do
+	desc 'Загружает страницу класса с ruby-doc.org'
+	task :load, [:klasses] do |_t, arg|
+		name =  arg[:klasses]
+		ext = arg.extras
+		ext << name
+		progressbar = ProgressBar.create(total: ext.size)
+		ext.compact.each do |klass|
+			url = format('https://ruby-doc.com/core-2.4.2/%s.html', klass)
+			File.write( "#{klass}.txt", open(url).read )
+			progressbar.increment
+		end
+	end
+end
+
+task :load do
+	puts 'TODO: load page (2) .'
+end
